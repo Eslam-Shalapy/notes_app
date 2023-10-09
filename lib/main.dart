@@ -4,7 +4,7 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:notee/constants/const.dart';
 import 'package:notee/cubits/bloc_observer.dart';
 import 'package:notee/models/note_model.dart';
-import 'package:notee/views/notes_screen.dart';
+import 'package:notee/views/notes_view.dart';
 
 void main() async {
   await Hive.initFlutter();
