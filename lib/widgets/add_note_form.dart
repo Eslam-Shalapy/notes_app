@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notee/cubits/add_note/add_note_cubit.dart';
+import 'package:notee/cubits/add_note/add_note_state.dart';
 import 'package:notee/models/note_model.dart';
 import 'package:notee/widgets/text_bottom.dart';
 import 'package:notee/widgets/text_form_field.dart';
@@ -11,6 +13,7 @@ class AddNoteForm extends StatefulWidget {
 }
 
 class _AddNoteFormState extends State<AddNoteForm> {
+  bool isLoading = true;
   AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
   var formKey = GlobalKey<FormState>();
   String? title, subTitle;
@@ -60,24 +63,32 @@ class _AddNoteFormState extends State<AddNoteForm> {
           const SizedBox(
             height: 16,
           ),
-          defaultButton(
-            function: () {
-              if (formKey.currentState!.validate()) {
-                formKey.currentState!.save();
-                var noteModel = NoteModel(
-                  title: title!,
-                  subTitle: subTitle!,
-                  date: DateTime.now().toString(),
-                  color: Colors.blue.value,
-                );
-                AddNoteCubit.get(context).addNote(noteModel);
-              } else {
-                autoValidateMode = AutovalidateMode.always;
-                setState(() {});
-              }
+          BlocBuilder<AddNoteCubit, AddNoteState>(
+            builder: (context, state) {
+              return defaultButton(
+                function: () {
+                  if (formKey.currentState!.validate()) {
+                    formKey.currentState!.save();
+                    var noteModel = NoteModel(
+                      title: title!,
+                      subTitle: subTitle!,
+                      date: DateTime.now().toString(),
+                      color: Colors.blue.value,
+                    );
+                    AddNoteCubit.get(context).addNote(noteModel);
+                  } else {
+                    autoValidateMode = AutovalidateMode.always;
+                    setState(() {});
+                  }
+                },
+                text: 'Add',
+                isLoading: state is LoadingAddNote ? true : false,
+              );
             },
-            text: 'Add',
-          )
+          ),
+          const SizedBox(
+            height: 16,
+          ),
         ],
       ),
     );

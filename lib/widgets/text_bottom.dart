@@ -7,6 +7,7 @@ Widget defaultButton({
   double radius = 8,
   Color backgroundContainer = kPrimaryColor,
   Color colorText = Colors.black,
+  bool isLoading = false,
   required function,
   required String text,
 }) =>
@@ -19,13 +20,21 @@ Widget defaultButton({
       ),
       child: MaterialButton(
         onPressed: function,
-        child: Text(
-          text,
-          style: TextStyle(
-            color: colorText,
-            fontWeight: FontWeight.bold,
-            fontSize: 15,
-          ),
-        ),
+        child: isLoading
+            ? const SizedBox(
+                height: 25,
+                width: 25,
+                child: CircularProgressIndicator(
+                  color: Colors.black,
+                ),
+              )
+            : Text(
+                text,
+                style: TextStyle(
+                  color: colorText,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15,
+                ),
+              ),
       ),
     );
