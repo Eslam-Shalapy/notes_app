@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:notee/cubits/add_note/add_note_cubit.dart';
+import 'package:notee/models/note_model.dart';
 import 'package:notee/widgets/text_bottom.dart';
 import 'package:notee/widgets/text_form_field.dart';
 
@@ -62,6 +64,13 @@ class _AddNoteFormState extends State<AddNoteForm> {
             function: () {
               if (formKey.currentState!.validate()) {
                 formKey.currentState!.save();
+                var noteModel = NoteModel(
+                  title: title!,
+                  subTitle: subTitle!,
+                  date: DateTime.now().toString(),
+                  color: Colors.blue.value,
+                );
+                AddNoteCubit.get(context).addNote(noteModel);
               } else {
                 autoValidateMode = AutovalidateMode.always;
                 setState(() {});

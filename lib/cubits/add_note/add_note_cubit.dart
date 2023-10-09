@@ -1,5 +1,4 @@
-// ignore_for_file: avoid_print
-
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:notee/constants/const.dart';
@@ -14,10 +13,10 @@ class AddNoteCubit extends Cubit<AddNoteState> {
     emit(LoadingAddNote());
     try {
       var notesBox = Hive.box<NoteModel>(kNotesBooks);
-      emit(SuccessAddNote());
       await notesBox.add(note);
+      emit(SuccessAddNote());
     } catch (e) {
-      print(e.toString());
+      debugPrint(e.toString());
       emit(FailureAddNote(e.toString()));
     }
   }
