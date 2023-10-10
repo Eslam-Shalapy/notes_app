@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:notee/models/note_model.dart';
 import 'package:notee/views/edit_note_view.dart';
 
 class NotesBody extends StatelessWidget {
-  const NotesBody({super.key});
-
+  const NotesBody({super.key, required this.noteModel});
+  final NoteModel noteModel;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -18,7 +19,7 @@ class NotesBody extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: const Color(0xffffcc80),
+          color:  Color(noteModel.color),
         ),
         padding: const EdgeInsets.only(
           top: 24,
@@ -33,9 +34,9 @@ class NotesBody extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             ListTile(
-              title: const Text(
-                'Flutter Tips',
-                style: TextStyle(
+              title: Text(
+                noteModel.title,
+                style: const TextStyle(
                   fontSize: 26.0,
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
@@ -44,7 +45,7 @@ class NotesBody extends StatelessWidget {
               subtitle: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 child: Text(
-                  'Build Your Career with Eslam Elsayed',
+                  noteModel.subTitle,
                   style: TextStyle(
                     fontSize: 16.0,
                     color: Colors.black.withOpacity(.5),
@@ -54,7 +55,9 @@ class NotesBody extends StatelessWidget {
                 ),
               ),
               trailing: IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    noteModel.delete();
+                  },
                   icon: const Icon(
                     Icons.delete,
                     color: Colors.black,
@@ -67,7 +70,7 @@ class NotesBody extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(right: 24),
               child: Text(
-                'May 21,2022',
+                noteModel.date,
                 style: TextStyle(
                   fontSize: 15.0,
                   color: Colors.black.withOpacity(.7),
