@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notee/cubits/notes_cubit/notes_cubit.dart';
 import 'package:notee/models/note_model.dart';
 import 'package:notee/views/edit_note_view.dart';
 
@@ -12,7 +13,7 @@ class NotesBody extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => const EditNote(),
+            builder: (context) =>  EditNote(noteModel: noteModel),
           ),
         );
       },
@@ -57,6 +58,7 @@ class NotesBody extends StatelessWidget {
               trailing: IconButton(
                   onPressed: () {
                     noteModel.delete();
+                    NotesCubit.get(context).fetchAllNotes();
                   },
                   icon: const Icon(
                     Icons.delete,

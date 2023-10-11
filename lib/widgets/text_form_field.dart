@@ -7,6 +7,7 @@ Widget customTextFormField({
   var validator,
   var onSaved,
   var onSubmitted,
+  var onChanged,
   TextEditingController? controller,
   IconData? prefixIcon,
   IconData? suffixIcon,
@@ -22,6 +23,7 @@ Widget customTextFormField({
       obscureText: obSucre,
       controller: controller,
       validator: validator,
+      onChanged: onChanged,
       onSaved: onSaved,
       onFieldSubmitted: onSubmitted,
       decoration: InputDecoration(
