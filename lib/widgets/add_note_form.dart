@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:notee/cubits/add_note/add_note_cubit.dart';
 import 'package:notee/cubits/add_note/add_note_state.dart';
 import 'package:notee/models/note_model.dart';
+import 'package:notee/widgets/color_list_view.dart';
 import 'package:notee/widgets/text_bottom.dart';
 import 'package:notee/widgets/text_form_field.dart';
 
@@ -61,6 +62,10 @@ class _AddNoteFormState extends State<AddNoteForm> {
               subTitle = value;
             },
           ),
+          const SizedBox(
+            height: 16,
+          ),
+          const ColorItemListView(),
           const SizedBox(
             height: 16,
           ),

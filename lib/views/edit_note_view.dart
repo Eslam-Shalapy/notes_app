@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:notee/cubits/notes_cubit/notes_cubit.dart';
 import 'package:notee/models/note_model.dart';
 import 'package:notee/widgets/custom_app_bar.dart';
+import 'package:notee/widgets/edit_note_color.dart';
 import 'package:notee/widgets/text_form_field.dart';
 
 class EditNote extends StatefulWidget {
@@ -52,6 +53,10 @@ class _EditNoteState extends State<EditNote> {
                 content = data;
               },
             ),
+            const SizedBox(
+              height: 20,
+            ),
+             EditColorListView(noteModel: widget.noteModel),
           ],
         ),
       ),

@@ -13,14 +13,14 @@ class NotesBody extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) =>  EditNote(noteModel: noteModel),
+            builder: (context) => EditNote(noteModel: noteModel),
           ),
         );
       },
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color:  Color(noteModel.color),
+          color: Color(noteModel.color),
         ),
         padding: const EdgeInsets.only(
           top: 24,
@@ -51,8 +51,6 @@ class NotesBody extends StatelessWidget {
                     fontSize: 16.0,
                     color: Colors.black.withOpacity(.5),
                   ),
-                  maxLines: 3,
-                  overflow: TextOverflow.ellipsis,
                 ),
               ),
               trailing: IconButton(

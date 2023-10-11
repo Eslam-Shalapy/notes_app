@@ -8,8 +8,9 @@ import 'package:notee/models/note_model.dart';
 class AddNoteCubit extends Cubit<AddNoteState> {
   AddNoteCubit() : super(InitialAddNote());
   static AddNoteCubit get(context) => BlocProvider.of(context);
-
+  Color? color;
   addNote(NoteModel note) async {
+    note.color = color!.value;
     emit(LoadingAddNote());
     try {
       var notesBox = Hive.box<NoteModel>(kNotesBooks);
