@@ -15,6 +15,8 @@ class EditNote extends StatefulWidget {
 
 class _EditNoteState extends State<EditNote> {
   String? title, content;
+  var titleController = TextEditingController();
+  var contentController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,8 +36,11 @@ class _EditNoteState extends State<EditNote> {
           mainAxisSize: MainAxisSize.min,
           children: [
             customTextFormField(
+              controller: titleController,
+              onTap: () {
+                titleController.text = widget.noteModel.title;
+              },
               labelText: 'Title',
-              hintText: widget.noteModel.title,
               prefixIcon: Icons.title,
               onChanged: (data) {
                 title = data;
@@ -45,8 +50,11 @@ class _EditNoteState extends State<EditNote> {
               height: 20,
             ),
             customTextFormField(
+              controller: contentController,
+              onTap: () {
+                contentController.text = widget.noteModel.subTitle;
+              },
               labelText: 'Content',
-              hintText: widget.noteModel.subTitle,
               maxLines: 5,
               prefixIcon: Icons.description_outlined,
               onChanged: (data) {
@@ -56,7 +64,7 @@ class _EditNoteState extends State<EditNote> {
             const SizedBox(
               height: 20,
             ),
-             EditColorListView(noteModel: widget.noteModel),
+            EditColorListView(noteModel: widget.noteModel),
           ],
         ),
       ),

@@ -8,6 +8,7 @@ Widget customTextFormField({
   var onSaved,
   var onSubmitted,
   var onChanged,
+  var onTap,
   TextEditingController? controller,
   IconData? prefixIcon,
   IconData? suffixIcon,
@@ -25,6 +26,7 @@ Widget customTextFormField({
       validator: validator,
       onChanged: onChanged,
       onSaved: onSaved,
+      onTap: onTap,
       onFieldSubmitted: onSubmitted,
       decoration: InputDecoration(
         hintText: hintText,
