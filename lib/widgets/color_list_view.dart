@@ -34,7 +34,6 @@ class ColorItemListView extends StatefulWidget {
 
 class _ColorItemListViewState extends State<ColorItemListView> {
   int currentIndex = 0;
-  List<Color> colors = kColors;
 
   @override
   Widget build(BuildContext context) {
@@ -44,22 +43,20 @@ class _ColorItemListViewState extends State<ColorItemListView> {
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) => GestureDetector(
           onTap: () {
-            AddNoteCubit.get(context).color = colors[index];
+            AddNoteCubit.get(context).color = kColors[index];
             currentIndex = index;
             setState(() {});
           },
           child: ColorItem(
             isActive: currentIndex == index,
-            color: colors[index],
+            color: kColors[index],
           ),
         ),
         separatorBuilder: (context, index) => const SizedBox(
           width: 5,
         ),
-        itemCount: colors.length,
+        itemCount: kColors.length,
       ),
     );
   }
 }
-
-

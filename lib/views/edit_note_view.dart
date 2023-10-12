@@ -21,15 +21,16 @@ class _EditNoteState extends State<EditNote> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: customAppBar(
-          text: 'Edit Note',
-          icon: Icons.check,
-          onPressedIcon: () {
-            widget.noteModel.title = title ?? widget.noteModel.title;
-            widget.noteModel.subTitle = content ?? widget.noteModel.subTitle;
-            widget.noteModel.save();
-            NotesCubit.get(context).fetchAllNotes();
-            Navigator.pop(context);
-          }),
+        text: 'Edit Note',
+        icon: Icons.check,
+        onPressedIcon: () {
+          widget.noteModel.title = title ?? widget.noteModel.title;
+          widget.noteModel.subTitle = content ?? widget.noteModel.subTitle;
+          widget.noteModel.save();
+          NotesCubit.get(context).fetchAllNotes();
+          Navigator.pop(context);
+        },
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(

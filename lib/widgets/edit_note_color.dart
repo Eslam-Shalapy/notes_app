@@ -14,11 +14,10 @@ class EditColorListView extends StatefulWidget {
 
 class _EditColorListViewState extends State<EditColorListView> {
   late int currentIndex;
-  List<Color> colors = kColors;
   @override
   void initState() {
     super.initState();
-    currentIndex = colors.indexOf(Color(widget.noteModel.color));
+    currentIndex = kColors.indexOf(Color(widget.noteModel.color));
   }
 
   @override
@@ -30,18 +29,18 @@ class _EditColorListViewState extends State<EditColorListView> {
         itemBuilder: (context, index) => GestureDetector(
           onTap: () {
             currentIndex = index;
-            widget.noteModel.color = colors[index].value;
+            widget.noteModel.color = kColors[index].value;
             setState(() {});
           },
           child: ColorItem(
             isActive: currentIndex == index,
-            color: colors[index],
+            color: kColors[index],
           ),
         ),
         separatorBuilder: (context, index) => const SizedBox(
           width: 5,
         ),
-        itemCount: colors.length,
+        itemCount: kColors.length,
       ),
     );
   }
